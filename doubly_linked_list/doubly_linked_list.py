@@ -5,34 +5,34 @@ as well as its next node in the List."""
 class ListNode:
     def __init__(self, value, prev=None, next=None):
         self.value = value
-        self.prev = prev
-        self.next = next
+        self.prev = prev # sometimes set to None
+        self.next = next # sometimes set to None
 
-    """Wrap the given value in a ListNode and insert it
-    after this node. Note that this node could already
-    have a next node it is point to."""
-    def insert_after(self, value):
-        current_next = self.next
-        self.next = ListNode(value, self, current_next)
-        if current_next:
-            current_next.prev = self.next
+    # """Wrap the given value in a ListNode and insert it
+    # after this node. Note that this node could already
+    # have a next node it is point to."""
+    # def insert_after(self, value):
+    #     current_next = self.next
+    #     self.next = ListNode(value, self, current_next)
+    #     if current_next:
+    #         current_next.prev = self.next
 
-    """Wrap the given value in a ListNode and insert it
-    before this node. Note that this node could already
-    have a previous node it is point to."""
-    def insert_before(self, value):
-        current_prev = self.prev
-        self.prev = ListNode(value, current_prev, self)
-        if current_prev:
-            current_prev.next = self.prev
+    # """Wrap the given value in a ListNode and insert it
+    # before this node. Note that this node could already
+    # have a previous node it is point to."""
+    # def insert_before(self, value):
+    #     current_prev = self.prev
+    #     self.prev = ListNode(value, current_prev, self)
+    #     if current_prev:
+    #         current_prev.next = self.prev
 
-    """Rearranges this ListNode's previous and next pointers
-    accordingly, effectively deleting this ListNode."""
-    def delete(self):
-        if self.prev:
-            self.prev.next = self.next
-        if self.next:
-            self.next.prev = self.prev
+    # """Rearranges this ListNode's previous and next pointers
+    # accordingly, effectively deleting this ListNode."""
+    # def delete(self):
+    #     if self.prev:
+    #         self.prev.next = self.next
+    #     if self.next:
+    #         self.next.prev = self.prev
 
 
 """Our doubly-linked list class. It holds references to
@@ -48,11 +48,49 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
+    def __str__(self):
+        pass
+
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
-        pass
+
+        # code from Ian..
+        # prev_head = self.head
+        # self.head = new_node
+        # prev_head.prev = new_node
+        # new_node.next = prev_head
+
+        new_node = ListNode(value)
+        self.length += 1
+        # initialize node(value)
+        # head = node
+        # tail = node
+        # length ++
+
+        # adding to an empty list
+        if self.head is None and self.tail is None:
+            #create new node
+            new_node = ListNode(value)
+            self.head = new_node
+            self.tail = new_node
+
+        # new_noe = node(3)
+        # update head
+        # head = new_node
+        # link new_node with head of DLL
+        # update head
+        # length ++
+
+        # adding new value to existing list
+        else:
+            # link new node with current head
+            new_node.next = self.head
+            self.head.prev = new_node
+            # update head
+            self.head = new_node
+
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
