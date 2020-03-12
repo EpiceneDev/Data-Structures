@@ -8,6 +8,14 @@ class ListNode:
         self.prev = prev
         self.next = next
 
+    """Rearranges this ListNode's previous and next pointers
+    accordingly, effectively deleting this ListNode."""
+    def delete(self):
+        if self.prev:
+            self.prev.next = self.next
+        if self.next:
+            self.next.prev = self.prev
+
 
 """Our doubly-linked list class. It holds references to
 the list's head and tail nodes."""
@@ -121,12 +129,26 @@ class DoublyLinkedList:
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
     def move_to_front(self, node):
-        pass
+        # store value here temporarily
+        value = node.value
+
+        # now value is saved, delete the old node
+        self.delete(node)
+
+        # add the value as a new head node
+        self.add_to_head(value)
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
     def move_to_end(self, node):
-        pass
+        # store value here temporarily
+        value = node.value
+
+        # now value is saved, delete the old node
+        self.delete(node)
+
+        # add the value as a new head node
+        self.add_to_tail(value)
 
 
     """Removes a node from the list and handles cases where
