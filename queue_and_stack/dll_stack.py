@@ -1,19 +1,29 @@
-import sys
-sys.path.append('../doubly_linked_list')
+# import sys
+# sys.path.append('../doubly_linked_list')
+
 from doubly_linked_list import DoublyLinkedList
 
-# FILO
+# FILO = LIFO
 class Stack:
-    def __init__(self):
+    def __init__(self): 
         self.size = 0
         # Why is our DLL a good choice to store our elements?
-        # self.storage = ?
+        self.storage = DoublyLinkedList()
 
     def push(self, value):
-        return self.append(value)
+        self.storage.add_to_head(value)
+        self.size +=1
 
     def pop(self):
-        return self.pop(value)
+        
+        if self.size > 0:
+            value = self.storage.remove_from_head()
+            self.size -=1
+            
+            return value
+
+        else:
+            print("The stack is empty.")
 
     def len(self):
-        return self.len 
+        return self.size
