@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../doubly_linked_list')
-from doubly_linked_list import DoublyLinkedList, ListNode
+from doubly_linked_list import DoublyLinkedList
 
 # FIFO
 class Queue:
