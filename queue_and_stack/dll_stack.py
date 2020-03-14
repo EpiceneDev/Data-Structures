@@ -2,6 +2,7 @@ import sys
 sys.path.append('../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
 
+# FILO
 class Stack:
     def __init__(self):
         self.size = 0
@@ -9,10 +10,10 @@ class Stack:
         # self.storage = ?
 
     def push(self, value):
-        pass
+        return self.append(value)
 
     def pop(self):
-        pass
+        return self.pop(value)
 
     def len(self):
-        pass
+        return self.len 
