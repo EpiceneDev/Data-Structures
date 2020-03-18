@@ -30,12 +30,15 @@ class DoublyLinkedList:
     def __str__(self):
         if self.head is None and self.tail is None: 
             return "empty"
+            
         curr_node = self.head
         output = ''
         output += f'( {curr_node.value} ) <-> '
+
         while curr_node.next is not None:
             curr_node = curr_node.next 
             output += f'( {curr_node.value} ) <-> '
+
         return output
 
     """Wraps the given value in a ListNode and inserts it 
@@ -207,28 +210,21 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
+        
         # update the node value if node already
         if key in self.storage:
             node = self.storage[key]
             node.value = (key, value)
             self.order.move_to_front(node)
             return
+
         if self.size == self.limit:
-            del self.storage[self.order.tailvalue[0]]
+            del self.storage[self.order.tail.value[0]]
             self.order.remove_from_tail()
             self.size -= 1
 
-        # add the node to storage
-        self.order.add_to_head((key,value))
-        self.storage[key] = self.order.headself.size += 1
-        
-        # remove items that arent used
-        # key is not in storage, and lmit has not been hit
-            # add the key to the front of the order structure
-        # key is in storage
-            # find the key in order, move the key to the front for recent used
-        # if self.size == self.limit
-            # either the head or tail will be removed depending on where you put it
-            # delete the dict
-        
-        self.storage[key] = value
+        # add to head and increase the size
+        new_node = (key, value)
+        self.order.add_to_head(new_node)
+        self.storage[key] = self.order.head
+        self.size +=1
