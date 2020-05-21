@@ -80,7 +80,7 @@ class BinarySearchTree:
             node.in_order_print(node.left)
 
         # Print ourselves
-        print(node.value)
+        print(str(node.value))
 
         # go right 
         if node.right is not None:
@@ -89,42 +89,52 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
+
+        if node is None:
+            return
+
         #create a queue for nodes
         node_queue = Queue()
         #add current node to queue
-        node_queue.insert(node)
+        node_queue.enqueue(node)
         #while the queue is empty
-        if node_queue:
+        while node_queue.len() > 0:
             #dequeue node
-            Queue.dequeue(node)
+
+            temp = node_queue.dequeue()
             #print node
-            print(node)
+            print(temp.value)
             # add node children
-            if self.left:
+            if temp.left is not None:
                 #if left, add 
-                Queue.enqueue(self.left, node)
-            if self.right:
+                node_queue.enqueue(temp.left)
+            if temp.right is not None:
                 #if right, add
-                Queue.enqueue(self.right, node)
+                node_queue.enqueue(temp.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
+        if node is None:
+            return
+
         # create a node_stack
         node_stack = Stack()
         # push the current node onto stack
-        Stack.push(node_stack, node)
+        node_stack.push(node)
         # while we have items on stack
-        if node_stack:
+        while node_stack.len() > 0:
             # print the current value and pop it off
-            print(node_stack.value)
-            Stack.pop(node_stack)
+
+            temp = node_stack.pop()
+            print(temp.value)
             # push the right value of the current node if we can
-            if node_stack.right:
-                Stack.push(node_stack, node)
+            if temp.right:
+                node_stack.push(temp.right)
+
             # push the left value of current node if we can
-            if node_stack.left:
-                Stack.push(node_stack, node)
+            if temp.left:
+                node_stack.push(temp.left)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
