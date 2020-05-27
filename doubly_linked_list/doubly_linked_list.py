@@ -49,6 +49,7 @@ class DoublyLinkedList:
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
         #instantiate a Node that takes value as its argument and assign it to a new variable new_node
+        #wrap the value in a ListNode
         new_node = ListNode(value, None, None)
 
         #increment the size of the list
@@ -145,43 +146,46 @@ class DoublyLinkedList:
     the node was the head or the tail"""
     def delete(self, node):
 
-        node.delete()
+        # node.delete()
         # the following 4 lines from Brian Doyle lecture
         # if node == self.tail:
         #     x = self.remove_from_tail()
         # if node == self.head:
         #     x = self.remove_from_head()
 
+
+        #if the list is empty, do nothing
+        if not self.head:
+            print("Nothing here!")
+            return
+
         #decrement the size of the list
         self.length -= 1
 
-        #if the list is empty, do nothing
-        if not self.head and not self.tail:
-            # TODO: Error handling
-            return
-
         #if there is only one item in the list
-        #set the pointes to null and garbage collection will handle the rest for us    
+        #set the pointers to null and garbage collection will handle the rest for us    
         # If head and tail
         if self.head == self.tail:
             self.head = None
             self.tail = None
 
         #if there is a head and head is the node to be deleted
-        elif self.head == node:
+        elif node == self.head:
 
             #this removes the head's next pointer before the head is deleted (assigns it to itself)
-            self.head = self.head.next
+            self.head = node.next
+            self.head.prev = None
 
             #delete the node using the delete mentod in the ListNode class
-            node.delete()
+            # node.delete()
 
         #if there is a tail and the tail is the node to be deleted
-        elif self.tail == node:
+        elif node == self.tail:
 
             #this removes the tail's prev's pointer before the tail is deleted (assigns it to itself)
-            self.tail = self.tail.prev
-            node.delete()
+            self.tail = node.prev
+            self.tail.next = None
+            # node.delete()
 
         #if none of the other cases match, delete the node
         else:
