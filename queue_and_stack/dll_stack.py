@@ -10,20 +10,27 @@ class Stack:
         self.storage = DoublyLinkedList()
 
     def push(self, value):
-        self.storage.add_to_head(value)
         self.size +=1
+        self.storage.add_to_tail(value)
 
     def pop(self):
-        
-        if self.size > 0:
-            value = self.storage.remove_from_head()
+        if self.size == 0:
+            return None
             
-            self.size -=1
-            
-            return value
+        self.size -= 1
 
-        else:
-            print("The stack is empty.")
+        popped_value = self.storage.remove_from_tail()
+
+        return popped_value
+        # if self.size > 0:
+        #     value = self.storage.remove_from_head()
+            
+        #     self.size -=1
+            
+        #     return value
+
+        # else:
+        #     print("The stack is empty.")
 
     def len(self):
         return self.size

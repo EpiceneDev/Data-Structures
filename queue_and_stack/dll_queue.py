@@ -16,17 +16,27 @@ class Queue:
         self.size += 1
 
     def dequeue(self):
+        if self.size == 0:
+            return None
+        
+        removed_value = self.storage.remove_from_head()
+        self.size -= 1
+
+        return removed_value
         # delete from queue
-        if self.len() > 0:
-            value = self.storage.remove_from_head()
+        # if self.len() > 0:
+        #     value = self.storage.remove_from_head()
 
-            self.size -= 1
+        #     self.size -= 1
 
-            return value
+        #     return value
 
-        else:
-            print("The queue is empty.")
+        # else:
+        #     print("The queue is empty.")
 
     def len(self):
         # what is the length of queue
         return self.size
+
+    def peek(self):
+        pass
