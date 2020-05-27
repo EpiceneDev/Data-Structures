@@ -44,6 +44,23 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
+    def find_middle(self):
+        middle = self.head
+        end = self.head
+
+        while end != None and end.next.next  != None:
+                end = end.next.next
+                middle = middle.next
+
+        return middle
+
+    # to reverse
+    # head should now be tail
+    # tails should now be head
+    # no recursion, no other data structures
+    def reverse_list(self):
+        pass
+
     def iterate_nodes(self):
         total = 0
         node = self.head
