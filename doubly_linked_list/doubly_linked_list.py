@@ -44,6 +44,15 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
+    def iterate_nodes(self):
+        total = 0
+        node = self.head
+        while node is not None:
+            total += 1
+            node = node.next
+
+        return total
+
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
