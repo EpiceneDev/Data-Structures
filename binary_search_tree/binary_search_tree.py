@@ -1,10 +1,11 @@
 import sys
 sys.path.append('../queue_and_stack')
+
 from dll_queue import Queue
 from dll_stack import Stack
 
 
-class BinarySearchTree:
+class BSTNode:
     def __init__(self, value):
         self.value = value
         self.left = None
@@ -12,17 +13,39 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        # compare value to the current node
-        if value < self.value and self.left is None:
-            self.left = BinarySearchTree(value)
-            return
-        elif value >= self.value and self.right is None:
-            self.right = BinarySearchTree(value)
-            return
-        if value < self.value:
-            self.left.insert(value)
+
+        if value >= self.value:
+            # check to see if right exists
+            if self.right:
+            # if so, make that node call insert with the same value
+                self.right.insert(value)
+            ## if not, create a node with hthat value, set node as right child
+            else:
+                self.right = BSTNode(value)
         else:
-            self.right.insert(value)
+            # check if left exists
+            if self.left:
+            # if so, make the node and insert the same value
+                self.left.insert(value)
+
+            #if not, create a node right here
+            else:
+                new_node = BSTNode(value)
+                self.left = new_node
+
+
+
+        # compare value to the current node
+        # if value < self.value and self.left is None:
+        #     self.left = BSTNode(value)
+        #     return
+        # elif value >= self.value and self.right is None:
+        #     self.right = BSTNode(value)
+        #     return
+        # if value < self.value:
+        #     self.left.insert(value)
+        # else:
+        #     self.right.insert(value)
         # if smaller, go left
             # if value < node.value look left
                 # if something is there already
@@ -40,15 +63,18 @@ class BinarySearchTree:
         if target == self.value:
             return True
         
-        if target < self.value:
-            if self.left is None:
+        elif target > self.value:
+            if self.right:
+                return self.right.contains(target)
+            
+            else:
                 return False
-            return self.left.contains(target)
 
-        if target > self.value:
-            if self.right is None:
+        else:
+            if self.left:
+                return self.left.contains(target)
+            else:
                 return False
-            return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):

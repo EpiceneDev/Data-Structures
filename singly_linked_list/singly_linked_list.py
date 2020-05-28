@@ -19,7 +19,7 @@ class LinkedList:
         self.head = None
 
     def insert_at_beginning(self, value):
-        node = Node(value, self.head)
+        node = ListNode(value, self.head)
         self.head = node
 
     def test_contains(self):
@@ -27,7 +27,7 @@ class LinkedList:
 
     def add_to_tail(self, value):
         if self.head is None:
-            self.head = Node(value, None)
+            self.head = ListNode(value, None)
             return
 
     def remove_head(self):
