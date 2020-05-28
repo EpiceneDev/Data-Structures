@@ -92,15 +92,25 @@ class BSTNode:
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
+        cb(self.value)
         # go left FIRST
-        if self.left is not None:
+        if self.left:
             self.left.for_each(cb)
         # print the value
-        cb(self.value)
+        # cb(self.value)
         # go right
-        if self.right is not None:
+        if self.right:
             self.right.for_each(cb)
-        
+
+        return None # will do this by default if not told... goes back to parent
+
+node_10 = BSTNode(10)
+node_10.for_each(print)
+
+#recursion is much like a call stack
+10, 8, 7, 9, 12, 11, 13
+
+
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
