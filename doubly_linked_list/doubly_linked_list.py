@@ -59,7 +59,13 @@ class DoublyLinkedList:
     # tails should now be head
     # no recursion, no other data structures
     def reverse_list(self):
-        pass
+        if head == None or head.next == None:
+            return head
+        else:
+            remaining = reverse(head.next)
+            head.next.next = head
+            head.next = None
+            return remaining
 
     def iterate_nodes(self):
         total = 0

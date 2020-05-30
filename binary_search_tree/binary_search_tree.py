@@ -96,12 +96,12 @@ class BSTNode:
         if self.left:
             self.left.for_each(cb)
         
-        # print the value
-        cb(self.value)
-
         # go right
         if self.right:
             self.right.for_each(cb)
+
+        # post order here
+        cb(self.value)
 
         # return None # will do this by default if not told... goes back to parent
 
