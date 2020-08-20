@@ -59,6 +59,15 @@ class DoublyLinkedList:
     # tails should now be head
     # no recursion, no other data structures
     def reverse_list(self):
+        if self == None or self.next == None:
+            return self
+        else:
+            remaining = reverse_list(self.next)
+            self.next.next = self
+            self.next = None
+            return remaining
+
+        '''
         if head == None or head.next == None:
             return head
         else:
@@ -66,6 +75,26 @@ class DoublyLinkedList:
             head.next.next = head
             head.next = None
             return remaining
+
+        or
+
+        prev = None
+        curr = head
+        while curr in not None:
+
+            # temp store (next_node) curr.next value
+            next_node = curr.next
+
+            # update curr.next pointer to prev
+            curr.next = prev
+
+            # update prev to the curr
+            prev = curr
+            
+            # iterate to the original/old next node
+            curr = next_node
+
+        '''
 
     def iterate_nodes(self):
         total = 0

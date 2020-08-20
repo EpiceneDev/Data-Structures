@@ -25,13 +25,3 @@ class Stack:
         popped_value = self.storage.remove_from_tail()
 
         return popped_value
-        # if self.size > 0:
-        #     value = self.storage.remove_from_head()
-            
-        #     self.size -=1
-            
-        #     return value
-
-        # else:
-        #     print("The stack is empty.")
-
